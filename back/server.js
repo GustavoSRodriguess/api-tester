@@ -38,14 +38,13 @@ app.post("/proxy", async (req, res) => {
         });
         const endTime = Date.now();
         const duration = endTime - startTime;
-        res.json(response.data);
 
         let responseSize = 0;
-        if(response.data) {
+        if (response.data) {
             responseSize = Buffer.byteLength(JSON.stringify(response.data), 'utf8');
         }
         console.log(`Request to ${url} took ${duration}ms and returned ${response.status} with size ${responseSize} bytes`);
-        if(response.headers) {
+        if (response.headers) {
             responseSize += Buffer.byteLength(JSON.stringify(response.headers), 'utf8');
             console.log(`Response headers size: ${responseSize} bytes`);
         }
